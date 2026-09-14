@@ -2,16 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-let 
-    home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
-in
+{ config, pkgs, libs, inputs, pkgs-unstable, ... }:
 
 {
-      imports =
+  imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
     ];  
 
   # Bootloader.
@@ -115,6 +111,11 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+	
+	nixpkgs.config.permittedInsecurePackages = [
+		"quickjs-2025-09-13-2"
+	];
+
   environment.systemPackages = with pkgs; [
 		# System
 		grub2
@@ -149,6 +150,7 @@ in
     croc
 		discord
 		inxi #hardware info
+		nix-tree # =?> to check for dependency use 
 
 
 		#Network 
