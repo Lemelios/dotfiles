@@ -3,9 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, libs, inputs, pkgs-unstable, ... }:
-let 
- home = "/home/balthazar/dotfiles";
-in 
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -103,21 +101,7 @@ in
   home-manager.users.balthazar = import ./home.nix;
 
 
-	# login manager config 
 
-	services.displayManager.sddm = {
-		enable = true;
-		theme = "pixie";
-		wayland.enable = true;
-
-		package = pkgs.kdePackages.sddm; 
-
-		extraPackages = [
-			pkgs.kdePackages.qtsvg
-      pkgs.kdePackages.qtdeclarative
-      pkgs.kdePackages.qt5compat
-		];
-	};
 
 
   programs.git = {
@@ -203,8 +187,8 @@ in
 		# pixie config 
 
 		(inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
-      background = "${home}/Images/Wallpapers/Kath.png"; 
-			avatar = "${home}/Images/Avatars/amon2.png";      
+      background = ../Images/Wallpapers/Kath.png; 
+			avatar = ../Images/Avatars/amon2.png;      
 			accentColor = "#317860";          # Hex color code
       autoColor = true;                 # true/false
       backgroundColor = "#1A1C1E";      # Hex color code
@@ -228,14 +212,6 @@ in
 	
 	# Services
 
-  services.greetd = { 
-  	enable = true;
-		settings.default_session = { 
-			command = "${pkgs.tuigreet}/bin/tuigreet --time  --remember --cmd start-hyprland";
-			user = "greeter";
-		};
-  }; 
-  
 	services.upower = { 
 		enable = true;
 		usePercentageForPolicy = true;
@@ -246,6 +222,35 @@ in
   	enable = true; 
 		extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
+
+	# login manager config 
+
+	services.displayManager.sddm = {
+		enable = true;
+		theme = "pixie";
+		wayland.enable = true;
+
+		autoLogin = {
+			enable = true;
+			user = "balthazar";
+		};
+
+		enableHidpi = false; 
+
+		settings = {
+							
+		};
+
+		autoNumlock = true;
+
+		package = pkgs.kdePackages.sddm; 
+
+		extraPackages = [
+			pkgs.kdePackages.qtsvg
+      pkgs.kdePackages.qtdeclarative
+      pkgs.kdePackages.qt5compat
+		];
+	};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
