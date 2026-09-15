@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, libs, inputs, pkgs-unstable, ... }:
-
+let 
+ home = "/home/balthazar";
+in 
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -100,6 +102,24 @@
   home-manager.backupFileExtension = "backup";
   home-manager.users.balthazar = import ./home.nix;
 
+
+	# login manager config 
+
+	services.displayManager.sddm = {
+		enable = true;
+		theme = "pixie";
+		wayland.enable = true;
+
+		package = pkgs.kdePackages.sddm; 
+
+		extraPackages = [
+			pkgs.kdePackages.qtsvg
+      pkgs.kdePackages.qtdeclarative
+      pkgs.kdePackages.qt5compat
+		];
+	};
+
+
   programs.git = {
     enable = true;
     prompt.enable = true;
@@ -179,6 +199,19 @@
     figlet
 		cmatrix
 		cbonsai
+
+		# pixie config 
+
+		(inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
+      background = "${home}/Images/Wallpapers/Kath.png"; 
+			avatar = "${home}/Images/Avatars/amon2.png";      
+			accentColor = "#317860";          # Hex color code
+      autoColor = true;                 # true/false
+      backgroundColor = "#1A1C1E";      # Hex color code
+      textColor = "#E2E2E6";            # Hex color code
+      fontFamily = "Terminess Nerd Font Proto";    # Font family name (must be installed system-wide)
+    })
+
   ];
 	
 	fonts.packages = with pkgs; [
