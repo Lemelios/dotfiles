@@ -4,7 +4,7 @@
 
 { config, pkgs, libs, inputs, pkgs-unstable, ... }:
 let 
- home = "/home/balthazar";
+ home = "/home/balthazar/dotfiles";
 in 
 {
   imports =
