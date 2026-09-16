@@ -16,13 +16,23 @@
 		system = "x86_64-linux";
 		pkgs-unstable = import unstable { inherit system; config.allowUnfree = true; };
 	in {
-		nixosConfigurations.nixos = current.lib.nixosSystem {
-			inherit system;
-			specialArgs = { inherit inputs pkgs-unstable; };
-			modules = [ 
-				./configuration.nix 
-				home-manager.nixosModules.home-manager
-			];
-		}; 
+		nixosConfigurations = {
+			current = current.lib.nixosSystem {
+				inherit system;
+				specialArgs = { inherit inputs pkgs-unstable; };
+				modules = [ 
+					./hosts/current/configuration.nix 
+					home-manager.nixosModules.home-manager
+				];
+			}; 
+			/* server = current.lib.nixosSystem {
+				inherit system;
+				specialArgs = { inherit inputs pkgs-unstable; };
+				modules = [
+					./hosts/server/configuration.nix
+					home-manager.nixosModules.home-manager
+				];
+			};*/
+		};
   };
 }

@@ -99,7 +99,7 @@
 		useUserPackages = true;
 		useGlobalPkgs = true;
 		backupFileExtension = "backup";
-		users.balthazar = import ./home.nix;
+		users.balthazar = import ../../nixModules/homeManagerModules/home.nix;
 	}; 
 
 
@@ -187,8 +187,8 @@
 
 		# pixie config 
 		(inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
-      background = ../Images/Wallpapers/Kath.png; 
-			avatar = ../Images/Avatars/amon2.png;      
+      background = ../../../Images/Wallpapers/Kath.png; 
+			avatar = ../../../Images/Avatars/amon2.png;      
 			accentColor = "#317860";          # Hex color code
       autoColor = true;                 # true/false
       backgroundColor = "#1A1C1E";      # Hex color code

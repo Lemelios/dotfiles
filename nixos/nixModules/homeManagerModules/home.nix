@@ -18,7 +18,7 @@
       maj-done = "notify-send 'MAJ' 'Mise À Jour terminée' -u normal -a Kitty";
       maj-fail = "notify-send 'MAJ' 'Echec de la Mise à Jour' -u critical -a Kitty";
       sshtome = "ssh balthazar@$IP";
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos && maj-done || maj-fail";
+      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#current && maj-done || maj-fail";
       Hit = "bluetoothctl connect 00:1E:7C:BF:0B:4C";
     };
 
