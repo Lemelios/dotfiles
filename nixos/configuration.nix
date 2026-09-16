@@ -97,11 +97,12 @@ in
   
   # Home-manager config
 
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.backupFileExtension = "backup";
-  home-manager.users.balthazar = import ./home.nix;
-
+	home-manager = {
+		useUserPackages = true;
+		useGlobalPkgs = true;
+		backupFileExtension = "backup";
+		users.balthazar = import ./home.nix;
+	}; 
 
 	# login manager config 
 
