@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../nixModules/networkModules/networkServices.nix
     ];  
 
   # Bootloader.
@@ -29,29 +30,6 @@
 	}
   '';
 
-  # bluetooth 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-
-
-	networking = {
-	  hostName = "nixos"; # Define your hostname.
-
-		# Enable networking
-		networkmanager.enable = true; 
-
-		hosts = {
-			"83.202.128.51" = ["maison"];
-		};		
-	};
-
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
@@ -72,9 +50,6 @@
   
   # add nix experimental commands 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -101,14 +76,6 @@
 		backupFileExtension = "backup";
 		users.balthazar = import ../../nixModules/homeManagerModules/home.nix;
 	}; 
-
-
-
-
-  programs.git = {
-    enable = true;
-    prompt.enable = true;
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -156,15 +123,6 @@
 		discord
 		inxi #hardware info
 		nix-tree # =?> to check for dependency use 
-
-
-		#Network 
-		wget
-    curl
-		openssh
-		dig
-		speedtest-cli
-    openvpn
 		
 		# Hyprland
 		wev
