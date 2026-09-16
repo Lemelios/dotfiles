@@ -185,7 +185,6 @@
 		cbonsai
 
 		# pixie config 
-
 		(inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
       background = ../Images/Wallpapers/Kath.png; 
 			avatar = ../Images/Avatars/amon2.png;      
@@ -225,15 +224,17 @@
 
 	# login manager config 
 
+	services.displayManager = {
+		autoLogin = {
+			enable = false;
+			user = "balthazar";
+		};
+	};
+
 	services.displayManager.sddm = {
 		enable = true;
 		theme = "pixie";
 		wayland.enable = true;
-
-		autoLogin = {
-			enable = true;
-			user = "balthazar";
-		};
 
 		enableHidpi = false; 
 
