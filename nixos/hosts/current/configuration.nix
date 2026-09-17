@@ -119,8 +119,7 @@
     killall
     zip 
     unzip 
-    croc
-		discord
+    croc	
 		inxi #hardware info
 		nix-tree # =?> to check for dependency use 
 		
