@@ -4,32 +4,19 @@
 
 { config, pkgs, libs, inputs, pkgs-unstable, ... }:
 
+
 {
   imports =
+	   let 
+			 dotfiles = ../../..;
+			 nix-home = ../..;
+		in 
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixModules/networkModules/networkServices.nix
+			../../nixModules/systemModules/systemServices.nix
     ];  
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.grub.enable = true; 
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = false;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   
-  boot.loader.grub.extraEntries = ''
-  	menuentry "Nobara Linux" {
-		insmod part_gpt
-		insmod fat
-		insmod chain
-		search --fs-uuid --set=root 87F4-1221
-		chainloader /EFI/fedora/shimx64.efi
-	}
-  '';
-
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
@@ -66,6 +53,7 @@
     description = "Balthazar Charvet";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
+		uid = 1000;
   };
   
   # Home-manager config
@@ -130,8 +118,7 @@
 		hyprpaper
 
     #browsers
-		proton-vpn-cli
-    firefox-devedition
+		firefox-devedition
     brave
 
     # funziz

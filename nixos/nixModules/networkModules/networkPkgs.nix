@@ -8,5 +8,6 @@
 		dig
 		speedtest-cli
     openvpn
+		proton-vpn-cli
   ];
 }
