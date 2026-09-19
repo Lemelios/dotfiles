@@ -77,23 +77,6 @@
 	];
 
   environment.systemPackages = with pkgs; [
-		# System
-		grub2
-		os-prober
-		btrfs-progs
-    file
-    lvm2
-    efibootmgr
-    brightnessctl
-    quickjs
-		jdk25
-		pulseaudio
-
-			#UPower dependencies 
-			upower
-			glib
-			libgudev
-			polkit
 
     # Utils
     neovim
