@@ -5,6 +5,7 @@
 		enable = true;
 		enableCompletion = true;
 		shellAliases = {
+			ssh = "kitten ssh";
 			sudoe = "sudo -E";
 			daemonize = "systemd-run --user --remain-after-exit";
 			svi = "sudoe nvim";
