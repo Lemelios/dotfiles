@@ -39,7 +39,7 @@ Scope {
 		anchors { top : true ; right : true}
 		margins { top: 12; right : 12}
 
-		implicitWidth: 380
+		implicitWidth: 450
 		implicitHeight: Math.max(1, column.implicitHeight)
 		color: "transparent"
 
@@ -59,7 +59,7 @@ Scope {
 
 					Layout.fillWidth: true 
 //					Layout.preferredHeight: layout.implicitHeight + 20 
-					Layout.preferredHeight: 60
+					Layout.preferredHeight: 80
 					radius: 10
 					border.width: 2
 					border.color: modelData.urgency === NotificationUrgency.Critical ? "purple" : "green"
@@ -87,7 +87,7 @@ Scope {
 						}
 						ColumnLayout {
 							Layout.fillWidth: true
-							spacing: 5
+							spacing: 10
 							Text {
 								id: head
 								Layout.fillWidth: true
