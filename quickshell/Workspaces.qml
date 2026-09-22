@@ -2,14 +2,13 @@ import Quickshell
 import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
-import "./Colors.js" as Col
 
 Rectangle {
     id: root
     implicitWidth : row.implicitWidth + 22
     implicitHeight : 33
     radius : height / 2
-	color: Col.baseGreen
+	color: Colors.baseGreen
 
     RowLayout {
         id: row
@@ -25,9 +24,9 @@ Rectangle {
                 implicitWidth : modelData.active ? 11 : 8
                 implicitHeight : implicitWidth
                 radius : width / 2
-                color : modelData.active ? "transparent" : Col.workPurple
+                color : modelData.active ? "transparent" : Colors.workPurple
                 border.width : modelData.active ? 2 : 0  
-                border.color : Col.workPurple
+                border.color : Colors.workPurple
 
                 Behavior on implicitWidth {
                     NumberAnimation { duration : 150 ; easing.type : Easing.OutCubic}

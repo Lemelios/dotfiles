@@ -1,7 +1,6 @@
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
-import "./Colors.js" as Col
 
 PanelWindow {
 	id: root
