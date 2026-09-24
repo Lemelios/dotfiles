@@ -130,8 +130,45 @@ WlSessionLock {
                         border {
                             width : pxField.activeFocus ? 2 : (LockScreenState.authFailed ? 2: 1)
                             color : LockScreenState.authFailed ? Colors.failRed 
-                                         : pwField.activeFocus ? Colors.basePurple
-                                         : Colors.inactiveGrey
+                                         : (pwField.activeFocus ? Colors.basePurple : Colors.inactiveGrey)
+                        };
+                        Behavior on border.color { ColorAnimation { duration : 200 } };
+                        Behavior on border.width { NumberAnimation { duration : 150 } };
+                        
+                        RowLayout {
+                            anchors {
+                                fill : parent 
+                                rightMargin : 16
+                                leftMargin : 16
+                            }
+                            spacing : 10
+
+                            TextField {
+                                id : pwField
+                                Layout.fillWidth : true 
+
+                                echoMode : TextImput.Password 
+                                enabled : !LockScreenState.authenticating 
+                                placeHolderText : LockScreenState.authenticating ? "Checking password ... " : "Password ..."
+                                placeHolderTextColor : Colors.inactiveGrey
+                                color : Colors.eludedDGreen
+                                background : null
+                                font.pixelSize : 15 
+                                verticalAlignment : TextImput.AlignVCenter
+
+                                onAccepted {
+                                    if (text.length > 0){
+                                        LockScreenState.authenticate(text)
+                                    }
+                                }
+
+                                BusyIndicator {
+                                    visible : LockScreenState.authenticating
+                                    running : LockScreenState.authenticating
+                                    implicitWidth : 18 
+                                    implicitHeight : 18
+                                }
+                            }
                         }
                     }
 
