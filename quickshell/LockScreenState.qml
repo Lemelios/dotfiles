@@ -17,7 +17,7 @@ Singleton {
 
         onCompleted: (result) => {
             if (result === PamResult.Success) {
-                root.unclock() 
+                root.unlock() 
             }
             else {
                 root.authFailed = true 
@@ -39,20 +39,20 @@ Singleton {
     property string pendingPassword : ""
 
     function lock() {
-        if(root.locked) return 
+        if (root.locked) return 
         authFailed = false 
-        root.lock = true 
+        root.locked = true 
     }
-    function unlock(){
+    function unlock() {
         authFailed = false 
         root.locked = false 
     }
     function authenticate(password){
         if (pam.active) return 
         authFailed = false 
-        pendingPassword = password
+        root.pendingPassword = password
 
-        pam.start
+        pam.start()
     }
 
     IpcHandler {
@@ -60,5 +60,6 @@ Singleton {
 
         function lock(): void { root.lock() }
         function isLocked(): bool {return root.locked}
+        function unlock(): void { root.unlock()}
     }
 }

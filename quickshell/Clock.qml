@@ -15,4 +15,7 @@ DataSec {
         id: clock
         precision: mArea.containsMouse ? SystemClock.Seconds : SystemClock.Minutes
     }
+	Behavior on implicitWidth {
+		NumberAnimation { duration : 250 ; easing.type : Easing.OutCubic}
+	}
 }

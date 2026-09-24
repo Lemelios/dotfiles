@@ -9,8 +9,8 @@ WlSessionLock {
     id: lock 
     locked : LockScreenState.locked
 
-    onLockedChange: {
-        if (LockScreenState.locked === locked){
+    onLockedChanged: {
+        if (LockScreenState.locked !== locked){
             LockScreenState = locked 
         }
 
@@ -57,7 +57,7 @@ WlSessionLock {
             }
             Rectangle {
                 anchors.fill : parent 
-                color : "#000000"
+                color : Colors.eludedDPurple
                 opacity : 0.45
             }
 
@@ -81,7 +81,7 @@ WlSessionLock {
                     NumberAnimation {
                         duration : 350 
                         easing.type : OutBack
-                        easing.overshot : 1.2
+                        easing.overshoot : 1.2
                     }
                 }
                 Behavior on y { NumberAnimation { duration : 350; easing.type : Easing.OutCubic } }
@@ -90,11 +90,11 @@ WlSessionLock {
                     id : shakeAnim 
                     loops : 1 
 
-                    NumberAnimation {target : card ; property : animOffsetX; to : -12 ; duration : 50 ; easing.type = Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : 12  ; duration : 50 ; easing.type = Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : -8  ; duration : 50 ; easing.type = Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : 8   ; duration : 50 ; easing.type = Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : 0   ; duration : 50 ; easing.type = Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : -12 ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : 12  ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : -8  ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : 8   ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : 0   ; duration : 50 ; easing.type : Easing.OutQuad ;}
                 }
 
                 Column {
@@ -131,9 +131,9 @@ WlSessionLock {
                             width : pxField.activeFocus ? 2 : (LockScreenState.authFailed ? 2: 1)
                             color : LockScreenState.authFailed ? Colors.failRed 
                                          : (pwField.activeFocus ? Colors.basePurple : Colors.inactiveGrey)
-                        };
-                        Behavior on border.color { ColorAnimation { duration : 200 } };
-                        Behavior on border.width { NumberAnimation { duration : 150 } };
+                        }
+                        Behavior on border.color { ColorAnimation { duration : 200 } }
+                        Behavior on border.width { NumberAnimation { duration : 150 } }
                         
                         RowLayout {
                             anchors {
@@ -147,32 +147,67 @@ WlSessionLock {
                                 id : pwField
                                 Layout.fillWidth : true 
 
-                                echoMode : TextImput.Password 
+                                echoMode : TextInput.Password 
                                 enabled : !LockScreenState.authenticating 
-                                placeHolderText : LockScreenState.authenticating ? "Checking password ... " : "Password ..."
-                                placeHolderTextColor : Colors.inactiveGrey
-                                color : Colors.eludedDGreen
+
+                                placeholderText : LockScreenState.authenticating ? "Checking password ... " : "Password ..."
+                                placeholderTextColor : Colors.inactiveGrey
+
+                                color : '#afc6c6c6'
                                 background : null
                                 font.pixelSize : 15 
-                                verticalAlignment : TextImput.AlignVCenter
+                                verticalAlignment : TextInput.AlignVCenter
 
-                                onAccepted {
-                                    if (text.length > 0){
+                                onAccepted: {
+                                    if (text.length > 0) 
                                         LockScreenState.authenticate(text)
-                                    }
-                                }
-
-                                BusyIndicator {
-                                    visible : LockScreenState.authenticating
-                                    running : LockScreenState.authenticating
-                                    implicitWidth : 18 
-                                    implicitHeight : 18
                                 }
                             }
+                            BusyIndicator {
+                                visible : LockScreenState.authenticating
+                                running : LockScreenState.authenticating
+                                implicitWidth : 18 
+                                implicitHeight : 18
+                            }
+                        }
+
+                    }
+                    Text {
+                        anchors.horizontalCenter : parent.horizontalCenter
+                        text : "Incorrect password"
+                        color : Colors.failRed
+                        font {
+                            weight : Font.Medium
+                            pixelSize : 18
+                        }
+                        opacity : LockScreenState.authFailed ? 1 : 0
+                        Behavior on opacity {
+                            NumberAnimation { duration : 200 ; easing.type : Easing.InOutSine}
                         }
                     }
-
                 }
+
+                Connections {
+                    target : LockScreenState
+                    function onAuthFailedChanged() {
+                        if (LockScreenState.authFailed){
+                            shakeAnim.start()
+                            pwField.text = ""
+                            pwField.forceActiveFocus()
+                        }
+                    }
+                    function onLockedChanged() {
+                        if (!LockScreenState.locked) {
+                            pwField.text = ""
+                        }
+                        else {
+                            pwField.forceActiveFocus()
+                        }
+                    }
+                }
+
+                Component.onCompleted : pwField.forceActiveFocus()
+
                 SystemClock {
                     id:clock 
                     precision : SystemClock.Minutes 

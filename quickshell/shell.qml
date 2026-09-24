@@ -5,5 +5,6 @@ import QtQuick.Layouts
 Scope{
     Bar {}
     NotifServ {}
+    LockScreen {}
 }
 /*e19a..*/

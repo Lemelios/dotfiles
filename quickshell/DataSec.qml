@@ -43,7 +43,6 @@ Rectangle {
 			visible: root.value !== "" && maxLabelWidth !== 0
 		}
 	}
-
 }
 
 
