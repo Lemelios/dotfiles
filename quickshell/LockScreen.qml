@@ -86,6 +86,60 @@ WlSessionLock {
                 }
                 Behavior on y { NumberAnimation { duration : 350; easing.type : Easing.OutCubic } }
                 
+                SequentialAnimation {
+                    id : shakeAnim 
+                    loops : 1 
+
+                    NumberAnimation {target : card ; property : animOffsetX; to : -12 ; duration : 50 ; easing.type = Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : 12  ; duration : 50 ; easing.type = Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : -8  ; duration : 50 ; easing.type = Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : 8   ; duration : 50 ; easing.type = Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : animOffsetX; to : 0   ; duration : 50 ; easing.type = Easing.OutQuad ;}
+                }
+
+                Column {
+                    anchors.horizontalCenter : parent.horizontalCenter
+                    spacing : 4
+
+                    Text {
+                        id: clockText
+                        anchors.horizontalCenter : parent.horizontalCenter
+                        text : Qt.formatDateTime(clock.time, "hh:mm")
+                        font {
+                            pixelSize : 80
+                            weight : Font.Thin 
+                        }
+                        color: Colors.darkGreen
+                    }
+                    Text {
+                        anchors.horizontalCenter : parent.horizontalCenter
+                        text : Qt.formatDateTime(clock.time, "dddd d MMMM yyyy")
+                        font {
+                            pixelSize : 16
+                            weight : Font.Medium 
+                        }
+                        color : Colors.darkGreen
+                    }
+                    Item {height : 12 ; width :1}
+                    Rectangle {
+                        id : fieldWrap
+                        width : parent.width 
+                        height : 50
+                        radius : 14 
+                        color : Colors.eludedFGreen
+                        border {
+                            width : pxField.activeFocus ? 2 : (LockScreenState.authFailed ? 2: 1)
+                            color : LockScreenState.authFailed ? Colors.failRed 
+                                         : pwField.activeFocus ? Colors.basePurple
+                                         : Colors.inactiveGrey
+                        }
+                    }
+
+                }
+                SystemClock {
+                    id:clock 
+                    precision : SystemClock.Minutes 
+                }
             }
         }
     }
