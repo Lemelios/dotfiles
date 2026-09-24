@@ -7,7 +7,7 @@ import QtQuick
 Singleton {
     id: root 
 
-    property bool locked: false 
+    property bool locked: true 
     property bool authenticating: pam.active  
     property bool authFailed: false
 

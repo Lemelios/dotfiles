@@ -98,13 +98,15 @@ WlSessionLock {
                 }
 
                 Column {
-                    anchors.horizontalCenter : parent.horizontalCenter
+                    id:contentColumn
+                    width : parent.width
                     spacing : 4
+                    visible : wallpaper.status === Image.Ready 
 
                     Text {
                         id: clockText
                         anchors.horizontalCenter : parent.horizontalCenter
-                        text : Qt.formatDateTime(clock.time, "hh:mm")
+                        text : Qt.formatDateTime(clock.date, "hh:mm")
                         font {
                             pixelSize : 80
                             weight : Font.Thin 
@@ -113,7 +115,7 @@ WlSessionLock {
                     }
                     Text {
                         anchors.horizontalCenter : parent.horizontalCenter
-                        text : Qt.formatDateTime(clock.time, "dddd d MMMM yyyy")
+                        text : Qt.formatDateTime(clock.date, "dddd d MMMM yyyy")
                         font {
                             pixelSize : 16
                             weight : Font.Medium 
