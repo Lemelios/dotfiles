@@ -7,9 +7,9 @@
 
 {
   imports =
-	   let 
-			 dotfiles = ../../..;
-			 nix-home = ../..;
+	  let 
+		  dotfiles = ../../..;
+			nix-home = ../..;
 		in 
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -63,6 +63,7 @@
 		useGlobalPkgs = true;
 		backupFileExtension = "backup";
 		users.balthazar = import ../../nixModules/homeManagerModules/home.nix;
+    extraSpecialArgs = { inherit inputs; };
 	}; 
 
   # Allow unfree packages

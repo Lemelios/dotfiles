@@ -1,6 +1,8 @@
-{config, libs, pkgs, ...}:
+{config, pkgs, libs, inputs, ...}:
 
 {
+	imports = [ inputs.areofyl-fetch.homeManagerModules.default ];
+
 	programs.kitty = { 
     enable = true;
     shellIntegration.enableBashIntegration = false;
@@ -15,4 +17,34 @@
 			font-family = "Terminess Nerd Font Proto";
     };
   };
-}
+
+	programs.fetch = {
+    enable = true;
+    labelColor = "cyan";
+    info = [
+      "os"
+      "host"
+      "kernel"
+      "uptime"
+      "shell"
+      "display"
+      "wm"
+      "icons"
+      "font"
+      "terminal"
+      "cpu"
+      "gpu"
+      "memory"
+      "disk"
+      "ip"
+      "locale"
+      "colors"
+    ];
+    speed = 1.0;
+    spin = "xy";
+    separator = "—";
+    shading = ".Mm|";
+    light = "top-left";
+    size = 1.5;
+  };
+} 

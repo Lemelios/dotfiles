@@ -13,6 +13,7 @@
 			url = "github:Lxtharia/minegrub-world-sel-theme";
 			inputs.nixpkgs.follows = "current";
 		};
+		areofyl-fetch.url = "github:areofyl/fetch";
   };
 
   outputs = { self, unstable, current, home-manager, ... }@inputs:
@@ -23,7 +24,7 @@
 		nixosConfigurations = {
 			current = current.lib.nixosSystem {
 				inherit system;
-				specialArgs = { inherit inputs pkgs-unstable; };
+				specialArgs = { inherit inputs pkgs-unstable system; };
 				modules = [ 
 					./hosts/current/configuration.nix 
 					home-manager.nixosModules.home-manager
