@@ -6,8 +6,8 @@ import QtQuick
 
 Singleton {
     id: root 
-
-    property bool locked: true 
+    property bool sysUp : false
+    property bool locked: !sysUp
     property bool authenticating: pam.active  
     property bool authFailed: false
 
@@ -61,5 +61,21 @@ Singleton {
         function lock(): void { root.lock() }
         function isLocked(): bool {return root.locked}
         function unlock(): void { root.unlock()}
+    }
+
+    Process {
+        id: uptime
+        command : ["sh", "-c", "w | head -1 | cut -d ' ' -f 4"]
+        stdout : StdioCollector {
+            onStreamFinished : root.sysUp = this.text.trim() >= 1   
+        }
+        running: true
+    }
+    Timer {
+        id: oneMin 
+        running : true 
+        repeat : false 
+        interval : 60000
+        onTriggered : uptime.running = true 
     }
 }
