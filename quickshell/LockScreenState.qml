@@ -67,7 +67,10 @@ Singleton {
         id: uptime
         command : ["sh", "-c", "w | head -1 | cut -d ' ' -f 4"]
         stdout : StdioCollector {
-            onStreamFinished : root.sysUp = this.text.trim() >= 1   
+            onStreamFinished: { 
+                root.sysUp = (this.text.trim().split(":")[0] >= 1);
+                console.log(this.text.trim().split(":")[0]);
+            }
         }
         running: true
     }

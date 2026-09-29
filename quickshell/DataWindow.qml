@@ -5,10 +5,16 @@ import QtQuick.Layouts
 PanelWindow {
 	id: root
 	exclusionMode : ExclusionMode.Ignore
-	implicitWidth : 550
-	implicitHeight : width 
+	anchors {
+		horizontalCenter : parent.horizontalCenter
+		top : parent.top
+	}
+	implicitWidth : 500
+	implicitHeight : 400
 	property string secName
-	property model currentModel
+	property var currentModel
+	color : Colors.eludedDGreen
+
 
     
 	GridLayout {

@@ -80,7 +80,7 @@ WlSessionLock {
                 Behavior on scale {
                     NumberAnimation {
                         duration : 350 
-                        easing.type : OutBack
+                        easing.type : Easing.OutBack
                         easing.overshoot : 1.2
                     }
                 }
@@ -90,11 +90,11 @@ WlSessionLock {
                     id : shakeAnim 
                     loops : 1 
 
-                    NumberAnimation {target : card ; property : animOffsetX; to : -12 ; duration : 50 ; easing.type : Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : 12  ; duration : 50 ; easing.type : Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : -8  ; duration : 50 ; easing.type : Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : 8   ; duration : 50 ; easing.type : Easing.OutQuad ;}
-                    NumberAnimation {target : card ; property : animOffsetX; to : 0   ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : card.animOffsetX; to : -12 ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : card.animOffsetX; to : 12  ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : card.animOffsetX; to : -8  ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : card.animOffsetX; to : 8   ; duration : 50 ; easing.type : Easing.OutQuad ;}
+                    NumberAnimation {target : card ; property : card.animOffsetX; to : 0   ; duration : 50 ; easing.type : Easing.OutQuad ;}
                 }
 
                 Column {
@@ -130,7 +130,7 @@ WlSessionLock {
                         radius : 14 
                         color : Colors.eludedFGreen
                         border {
-                            width : pxField.activeFocus ? 2 : (LockScreenState.authFailed ? 2: 1)
+                            width : pwField.activeFocus ? 2 : (LockScreenState.authFailed ? 2: 1)
                             color : LockScreenState.authFailed ? Colors.failRed 
                                          : (pwField.activeFocus ? Colors.basePurple : Colors.inactiveGrey)
                         }
