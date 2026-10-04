@@ -79,6 +79,6 @@ Singleton {
         running : true 
         repeat : false 
         interval : 60000
-        onTriggered : uptime.running = true 
+        onTriggered : uptime.running = true ;
     }
 }

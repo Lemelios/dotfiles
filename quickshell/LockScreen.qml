@@ -67,7 +67,7 @@ WlSessionLock {
                 height : contentColumn.height 
                 anchors.centerIn : parent 
 
-                property real baseX: (parents.width - width)/2
+                property real baseX: (parent.width - width)/2
                 property real animOffsetX: 0
 
                 transform : Translate { x : card.animOffsetX }

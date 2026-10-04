@@ -2,6 +2,7 @@ import Quickshell
 import QtQuick
 
 DataSec {
+	id : parentWindow
     icon: String.fromCodePoint(0xf313)
     value: Qt.formatDateTime(clock.date, mArea.containsMouse ? "hh:mm:ss — dd/MM/yy" : "hh:mm")
 
@@ -17,5 +18,14 @@ DataSec {
     }
 	Behavior on implicitWidth {
 		NumberAnimation { duration : 250 ; easing.type : Easing.OutCubic}
+	}
+
+	PopupWindow{
+		anchor.window: toplevel
+		anchor.rect.x: parentWindow.width / 2 - width / 2
+		anchor.rect.y: parentWindow.height
+		implicitWidth: 500
+		implicitHeight: 500
+		visible: true
 	}
 }
