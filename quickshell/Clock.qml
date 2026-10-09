@@ -21,9 +21,14 @@ DataSec {
 	}
 
 	PopupWindow{
-		anchor.window: toplevel
-		anchor.rect.x: parentWindow.width / 2 - width / 2
-		anchor.rect.y: parentWindow.height
+		anchor {
+			rect {
+				x: parentWindow.width / 2 - width / 2
+				y : parentWindow.height
+			}
+			window: parentWindow
+			adjustment : PopupAdjustment.Slide
+		}
 		implicitWidth: 500
 		implicitHeight: 500
 		visible: true

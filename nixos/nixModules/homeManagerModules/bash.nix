@@ -16,6 +16,7 @@
       maj-fail = "notify-send 'MAJ' 'Echec de la Mise à Jour' -u critical -a Kitty";
       sshtome = "ssh balthazar@$IP";
       Hit = "bluetoothctl connect 00:1E:7C:BF:0B:4C";
+			cat = "bat -pp";
     };
 
     initExtra = ''
