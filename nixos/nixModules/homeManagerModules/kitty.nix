@@ -1,11 +1,16 @@
 {config, pkgs, libs, inputs, ...}:
 
 {
-	imports = [ inputs.areofyl-fetch.homeManagerModules.default ];
+	imports = [ 
+		inputs.areofyl-fetch.homeManagerModules.default 
+		./bash.nix
+		./fish.nix
+	];
 
 	programs.kitty = { 
     enable = true;
     shellIntegration.enableBashIntegration = false;
+		shellIntegration.enableFishIntegration = false;
     settings = {
       background = "#081A00";
       background_opacity = "0.75";

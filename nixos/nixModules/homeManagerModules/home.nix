@@ -1,13 +1,15 @@
 {config, pkgs, inputs, ...}:
 
 {
-  home.username = "balthazar";
-  home.homeDirectory = "/home/balthazar";
-  home.stateVersion = "26.05";
-
+  home = {
+		username = "balthazar";
+		homeDirectory = "/home/balthazar";
+		stateVersion = "26.05";
+		sessionPath = [ "$HOME/pbin" ];
+		sessionVariables = { IP = "83.202.128.51"; };
+	};
 
 	imports = [
-		./bash.nix
 		./discord.nix
 		./kitty.nix
 		./neovim.nix 

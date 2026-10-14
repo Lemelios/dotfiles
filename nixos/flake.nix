@@ -2,7 +2,7 @@
   description = "Config de Lemelios MrdL";
 
   inputs = {
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+		unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 		current.url  = "github:NixOS/nixpkgs/26.05";
 		home-manager = {
 			url = "github:nix-community/home-manager/release-26.05";
