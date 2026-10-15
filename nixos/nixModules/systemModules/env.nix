@@ -1,4 +1,4 @@
-{config, libs, pkgs, ...}:
+{config, lib, pkgs, ...}:
 {
 	environment = {
 
@@ -22,14 +22,7 @@
 			bashInteractive 
 			fish
 		];
-
-		# Fish plugins, here in the wait for a better solution
-		systemPackages = with pkgs.fishPlugins; [
-			tide 
-			done
-			sponge
-			forgit
-			autopair
-		];
+	
 	};
+	programs.fish.enable = true;
 }

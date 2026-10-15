@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, libs, inputs, pkgs-unstable, ... }:
+{ config, pkgs, lib, inputs, pkgs-unstable, ... }:
 
 
 {
@@ -83,7 +83,6 @@
     neovim
     bat
     vscodium
-    git
 		libnotify
     lsd
     tree 
@@ -94,6 +93,7 @@
     croc	
 		inxi #hardware info
 		nix-tree # =?> to check for dependency use 
+		fzf
 		
 		# Hyprland
 		wev

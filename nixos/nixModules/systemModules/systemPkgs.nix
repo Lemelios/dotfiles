@@ -1,4 +1,4 @@
-{config, libs, pkgs, nixpkgs, ...}:
+{config, lib, pkgs, nixpkgs, ...}:
 
 {
 	environment.systemPackages = with pkgs; [
@@ -16,5 +16,6 @@
 		glib
 		libgudev
 		polkit
+		pstree
 	];
 }

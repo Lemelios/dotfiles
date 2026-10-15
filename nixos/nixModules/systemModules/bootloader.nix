@@ -1,4 +1,4 @@
-{config, libs, nixpkgs, ...}:
+{config, lib, nixpkgs, ...}:
 
 {
 	boot.loader = {

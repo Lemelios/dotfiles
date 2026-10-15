@@ -1,4 +1,4 @@
-{libs, pgks, home-manager, ...}:
+{lib, pgks, home-manager, ...}:
 
 {
 	programs.discord = {

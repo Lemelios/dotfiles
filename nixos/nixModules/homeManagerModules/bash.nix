@@ -1,4 +1,4 @@
-{config, libs, ...}:
+{config, lib, ...}:
 
 {
 	programs.bash = {

@@ -1,4 +1,4 @@
-{libs, pkgs, ...}:
+{lib, pkgs, ...}:
 
 {
   programs.git = {

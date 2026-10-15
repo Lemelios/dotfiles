@@ -1,4 +1,4 @@
-{config, pkgs, libs, inputs, ...}:
+{config, pkgs, lib, inputs, ...}:
 
 {
 	imports = [ 
@@ -20,6 +20,7 @@
       cursor_trail_decay = "0.1 0.4";
       map = "--allow-fallback=shifted,ascii ctrl+c copy_or_interrupt";
 			font-family = "Terminess Nerd Font Proto";
+			shell = "fish";
     };
   };
 
