@@ -31,6 +31,6 @@ DataSec {
 		}
 		implicitWidth: 500
 		implicitHeight: 500
-		visible: true
+		visible: mArea.containsMouse
 	}
 }

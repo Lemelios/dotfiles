@@ -65,11 +65,11 @@ Singleton {
 
     Process {
         id: uptime
-        command : ["sh", "-c", "w | head -1 | cut -d ' ' -f 4"]
+        command : ["sh", "-c", "w | head -1 | cut -d ' ' -f 5"]
         stdout : StdioCollector {
             onStreamFinished: { 
-                root.sysUp = (this.text.trim().split(":")[0] >= 1);
-                console.log(this.text.trim().split(":")[0]);
+                root.sysUp = (parseInt(this.text.split(":")[0]) >= 1);
+                console.log(parseInt(this.text.split(":")[0]));
             }
         }
         running: true
