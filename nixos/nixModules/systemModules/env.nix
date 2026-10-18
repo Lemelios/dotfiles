@@ -17,6 +17,8 @@
       sshtome = "ssh balthazar@$IP";
       Hit = "bluetoothctl connect 00:1E:7C:BF:0B:4C";
 			cat = "bat -pp";
+			fvi = "fzf | xargs nvim";
+			fcat = "fzf | xargs cat";
 		};
 		shells = with pkgs; [ 
 			bashInteractive 
