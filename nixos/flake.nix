@@ -14,6 +14,7 @@
 			inputs.nixpkgs.follows = "current";
 		};
 		areofyl-fetch.url = "github:areofyl/fetch";
+		lazyvim.url = "github:pfassina/lazyvim-nix";
   };
 
   outputs = { self, unstable, current, home-manager, ... }@inputs:

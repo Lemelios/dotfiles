@@ -1,6 +1,12 @@
 {lib, config, ...}:
 
 {
+	
+	import [ lazyvim.homeManagerModules.default ];
+	programs.lazyvim {
+		unable = true;
+	};
+
 	programs.neovim = {
     enable = true;
 		defaultEditor = true; 
