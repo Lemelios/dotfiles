@@ -18,22 +18,6 @@
         "type": "github"
       }
     },
-    "current": {
-      "locked": {
-        "lastModified": 1780145889,
-        "narHash": "sha256-md0zn0RnwNvPyASas1yG5YUuwQ4ALA6ucL50l0DvqCo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8c50a710ddca43d7a530fb805ad55bde8d0141c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "26.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -73,7 +57,7 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
-          "current"
+          "stable"
         ]
       },
       "locked": {
@@ -113,7 +97,7 @@
     "minegrub-world-sel-theme": {
       "inputs": {
         "nixpkgs": [
-          "current"
+          "stable"
         ]
       },
       "locked": {
@@ -200,12 +184,28 @@
     "root": {
       "inputs": {
         "areofyl-fetch": "areofyl-fetch",
-        "current": "current",
         "home-manager": "home-manager",
         "lazyvim": "lazyvim",
         "minegrub-world-sel-theme": "minegrub-world-sel-theme",
         "pixie-sddm": "pixie-sddm",
+        "stable": "stable",
         "unstable": "unstable"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1780145889,
+        "narHash": "sha256-md0zn0RnwNvPyASas1yG5YUuwQ4ALA6ucL50l0DvqCo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8c50a710ddca43d7a530fb805ad55bde8d0141c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "26.05",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "systems": {

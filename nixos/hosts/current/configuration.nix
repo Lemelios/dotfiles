@@ -6,6 +6,11 @@
 
 
 {
+	
+	nixpkgs.config.permittedInsecurePackages = [
+		"quickjs-2025-09-13-2"
+  ];
+
   imports =
 	  let 
 		  dotfiles = ../../..;
