@@ -5,6 +5,9 @@
 	imports = [ inputs.lazyvim.homeManagerModules.default ];
 	programs.lazyvim = {
 		enable = true;
+		extras = {
+			lang.nix.enable = true;
+		};
 	};
 
 	programs.neovim = {

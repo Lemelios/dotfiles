@@ -9,7 +9,6 @@
 		lvm2
 		efibootmgr
 		brightnessctl
-		quickjs
 		jdk25
 		pulseaudio
 		upower

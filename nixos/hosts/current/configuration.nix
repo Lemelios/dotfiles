@@ -72,10 +72,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-	
-	nixpkgs.config.permittedInsecurePackages = [
-		"quickjs-2025-09-13-2"
-	];
 
   environment.systemPackages = with pkgs; [
 
