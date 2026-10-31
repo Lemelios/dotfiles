@@ -1,10 +1,10 @@
-{lib, config, ...}:
+{lib, config, inputs, ...}:
 
 {
 	
-	import [ lazyvim.homeManagerModules.default ];
-	programs.lazyvim {
-		unable = true;
+	imports = [ inputs.lazyvim.homeManagerModules.default ];
+	programs.lazyvim = {
+		enable = true;
 	};
 
 	programs.neovim = {
