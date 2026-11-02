@@ -5,6 +5,7 @@
 		inputs.areofyl-fetch.homeManagerModules.default 
 		./bash.nix
 		./fish.nix
+    ./zellij.nix
 	];
 
 	programs.kitty = { 
