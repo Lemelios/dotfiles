@@ -6,4 +6,12 @@
 		./systemPkgs.nix
 		./env.nix
 	];
+
+	nix = {
+		gc = {
+			automatic = true;
+			dates = "weekly";
+		};
+		
+	};
 }
