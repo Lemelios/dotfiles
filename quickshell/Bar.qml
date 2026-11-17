@@ -31,7 +31,7 @@ Scope {
 				
 				BatWdg {}
 				AudioWdg {}
-				WifiWdg {}
+				WifiWdgExample {}
 				Bluetooth {}
 			}
 

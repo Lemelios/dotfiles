@@ -31,6 +31,14 @@
 
   outputs = { self, unstable, stable, ... }@inputs:
 	let
+		userEnv = {
+			username = "balthazar";
+			hostname = "luciel";
+			system = "x86_64-linux";
+			baseShell = "fish";
+			desktopEnv = "hyprland";
+			qsConfig = "laptop";
+		};
 		system = "x86_64-linux";
 		pkgs-unstable = import unstable { inherit system; config.allowUnfree = true; };
 	in {
