@@ -71,6 +71,7 @@ PopupWindow {
         active: root.visible
         onCleared: root.close()   // émis quand on clique hors de la popup
     }
+		grabFocus : true 
 
     // ---- Apparence ---------------------------------------------------------
     Rectangle {

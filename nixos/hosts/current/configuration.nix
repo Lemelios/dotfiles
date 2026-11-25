@@ -4,7 +4,10 @@
 
 { config, pkgs, lib, inputs, pkgs-unstable, ... }:
 
-
+let 
+  dotfiles = ../../..;
+	nix-home = ../..;
+in 
 {
 	
 	nixpkgs.config.permittedInsecurePackages = [
@@ -12,14 +15,10 @@
   ];
 
   imports =
-	  let 
-		  dotfiles = ../../..;
-			nix-home = ../..;
-		in 
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../nixModules/networkModules/networkServices.nix
-			../../nixModules/systemModules/systemServices.nix
+      (nix-home + /nixModules/networkModules/networkServices.nix)
+			(nix-home + /nixModules/systemModules/systemServices.nix)
     ];  
   
   # Set your time zone.
@@ -67,7 +66,7 @@
 		useUserPackages = true;
 		useGlobalPkgs = true;
 		backupFileExtension = "backup";
-		users.balthazar = import ../../nixModules/homeManagerModules/home.nix;
+		users.balthazar = import (nix-home + /nixModules/homeManagerModules/home.nix);
     extraSpecialArgs = { inherit inputs; };
 	}; 
 
@@ -95,6 +94,7 @@
 		inxi #hardware info
 		nix-tree # =?> to check for dependency use 
 		fzf
+		ocamlPackages.utop
 		
 		# Hyprland
 		wev
@@ -116,8 +116,8 @@
 
 		# pixie config 
 		(inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
-      background = ../../../Images/Wallpapers/Kath.png; 
-			avatar = ../../../Images/Avatars/amon2.png;      
+      background = dotfiles + /Images/Wallpapers/Kath.png; 
+			avatar = dotfiles + /Images/Avatars/amon2.png;      
 			accentColor = "#317860";          # Hex color code
       autoColor = true;                 # true/false
       backgroundColor = "#1A1C1E";      # Hex color code

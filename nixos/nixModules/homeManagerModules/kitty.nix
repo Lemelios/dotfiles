@@ -19,7 +19,11 @@
     };
   };
 
-  config = {
+  config = 
+    let 
+      bsh = config.baseShell;
+      fetcher = config.fetcher;
+    in { 
     programs.kitty = { 
       enable = true;
       shellIntegration.enableBashIntegration = false;
@@ -33,12 +37,12 @@
         cursor_trail_decay = "0.1 0.4";
         map = "--allow-fallback=shifted,ascii ctrl+c copy_or_interrupt";
         font-family = "Terminess Nerd Font Proto";
-        shell = "fish";
+        shell = bsh;
       };
     };
 
     programs.fetch = {
-      enable = true;
+      enable = fetcher == "fetch";
       labelColor = "cyan";
       info = [
         "os"
